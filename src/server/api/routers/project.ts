@@ -1,11 +1,12 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { pollCommits } from "@/lib/github";
 
 export const projectRouter = createTRPCRouter({
     createProject: protectedProcedure.input(
         z.object({
             name: z.string(),
-            githubUrl: z.string(),
+            githubUrl: z.string().url(),
             githubToken: z.string().optional()
         })
     ).mutation(async ({ ctx, input }) => {
@@ -21,6 +22,7 @@ export const projectRouter = createTRPCRouter({
             }
         })
 
+        await pollCommits(project.id);
         return project;
     }),
 

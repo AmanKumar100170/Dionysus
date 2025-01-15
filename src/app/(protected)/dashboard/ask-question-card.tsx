@@ -7,15 +7,33 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
+import { askQuestion } from "./actions";
+import { readStreamableValue } from "ai/rsc";
 
 const AskQuestionCard = () => {
     const { project } = useProject();
     const [ question, setQuestion ] = useState('');
     const [ open, setOpen ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
+    const [ filesReferences, setFileReferences ] = useState<{ fileName: string; sourceCode: string; summary: string }[]>([]);
+    const [ answer, setAnswer ] = useState('');
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!project?.id) return;
+        setLoading(true);
         setOpen(true);
+
+        const { output, filesReference } = await askQuestion(question, project.id);
+        setFileReferences(filesReference);
+
+        for await (const delta of readStreamableValue(output)) {
+            if (delta) {
+                setAnswer(ans => ans + delta);
+            }
+        }
+
+        setLoading(false);
     }
 
     return (
@@ -28,6 +46,13 @@ const AskQuestionCard = () => {
                             <Image src='/logo.png' alt="dionysus" width={40} height={40} />
                         </DialogTitle>
                     </DialogHeader>
+
+                    {answer}
+                    <h1>Files References</h1>
+                    {filesReferences.map(file => {
+                        return <span>{file.fileName}</span>
+                    })}
+
                 </DialogContent>
             </Dialog>
 

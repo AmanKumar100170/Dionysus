@@ -14,6 +14,7 @@ import CodeReferences from './code-references';
 import { api } from '@/trpc/react';
 import { toast } from 'sonner';
 import useRefetch from '@/hooks/use-refetch';
+import { Download } from 'lucide-react';
 
 const AskQuestionCard = () => {
     const { project } = useProject();
@@ -73,14 +74,14 @@ const AskQuestionCard = () => {
                                     }
                                 })
                             }}>
+                                <Download />
                                 Save Answer
                             </Button>
                         </div>
                     </DialogHeader>
 
                     <MDEditor.Markdown source={answer} className='max-w-[70vw] !h-full max-h-[30vh] overflow-scroll' />
-                    <div className="h-2"></div>
-                    <CodeReferences filesReferences={filesReferences} />
+                    <CodeReferences filesReferences={filesReferences} codeHeight={35} />
 
                     <Button type='button' onClick={() => {setOpen(false)}}>
                         Close

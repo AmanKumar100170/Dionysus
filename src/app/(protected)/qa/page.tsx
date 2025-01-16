@@ -33,7 +33,7 @@ const QAPage = () => {
                             <div className="flex items-centergap-4 bg-white rounded-lg p-4 shadow border">
                                 <img className="rounded-full" height={30} width={30} src={question.user.imageUrl ?? ""} />
 
-                                <div className="text-left flex flex-col">
+                                <div className="text-left flex flex-col ml-4">
                                     <div className="flex items-center gap-2">
                                         <p className="text-gray-700 line-clamp-1 text-lg font-medium">
                                             {question.question}
@@ -59,10 +59,11 @@ const QAPage = () => {
                         <SheetTitle>
                             {question.question}
                         </SheetTitle>
-                        <div className="max-h-[50vh] overflow-scroll">
+                        <div className="max-h-[40vh] overflow-scroll">
                             <MDEditor.Markdown source={question.answer} />
                         </div>
-                        <CodeReferences filesReferences={(question.filesReferences ?? []) as any} />
+                        <div className="h-2"></div>
+                        <CodeReferences codeHeight={40} filesReferences={(question.filesReferences ?? []) as any} />
                     </SheetHeader>
                 </SheetContent>
             )}

@@ -20,6 +20,7 @@
 - Rich markdown formatting for commit messages.
 - Extracts and displays applied design patterns or refactor insights (e.g., SOLID principles).
 - Repository management with support for multiple projects.
+- ![Dionysus Dashboard](./public/D Dashboard.png)
 
 ### 🤖 AI Q&A System (Codebase GPT)
 - Ask technical questions like:

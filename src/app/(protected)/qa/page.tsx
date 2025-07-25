@@ -63,6 +63,7 @@ const QAPage = () => {
                             <MDEditor.Markdown source={question.answer} />
                         </div>
                         <div className="h-2"></div>
+                        {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any */}
                         <CodeReferences codeHeight={40} filesReferences={(question.filesReferences ?? []) as any} />
                     </SheetHeader>
                 </SheetContent>

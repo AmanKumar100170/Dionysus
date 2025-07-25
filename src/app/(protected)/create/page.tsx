@@ -12,7 +12,7 @@ type FormInput = {
     githubToken?: string
 }
 
-const createPage = () => {
+const CreatePage = () => {
     const { register, handleSubmit, reset } = useForm<FormInput>();
     const createProject = api.project.createProject.useMutation();
     const refetch = useRefetch();
@@ -26,7 +26,7 @@ const createPage = () => {
             onSuccess: () => {
                 toast.success('Project created successfully');
                 reset();
-                refetch();  
+                await refetch();  
             },
             onError: () => {
                 toast.error('Failed to create project');
@@ -37,7 +37,7 @@ const createPage = () => {
 
     return (
         <div className="flex items-center gap-12 h-full justify-center">
-            {/* <img src="/undraw_github.svg" className="h-56 w-auto" /> */}
+            <img src="/createlogo.png" className="h-56 w-auto" />
             <div>
                 <div>
                     <h1 className="font-semibold text-2xl">
@@ -79,4 +79,4 @@ const createPage = () => {
     )
 }
 
-export default createPage;
+export default CreatePage;

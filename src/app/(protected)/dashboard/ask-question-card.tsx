@@ -56,7 +56,7 @@ const AskQuestionCard = () => {
                     <DialogHeader>
                         <div className='flex items-center gap-2'>
                             <DialogTitle>
-                                <Image src='/logo.png' alt="dionysus" width={40} height={40} />
+                                <Image src='/mainlogo.png' alt="dionysus" width={40} height={40} />
                             </DialogTitle>
                             <Button disabled={saveAnswer.isPending} variant={"outline"} onClick={() => {
                                 saveAnswer.mutate({

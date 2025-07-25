@@ -6,6 +6,7 @@ import { useState } from "react";
 import { uploadFile } from "@/lib/firebase";
 import { Presentation, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 const MeetingCard = () => {
     const [ progress, setProgress ] = useState(0);
@@ -13,7 +14,8 @@ const MeetingCard = () => {
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
-            "audio/*": [".mp3", ".wav", ".m4a"]
+            "audio/*": [".mp3", ".wav", ".m4a"],
+            "video/*": [".mp4", ".mov"]
         },
         multiple: false,
         maxSize: 50_000_000,
@@ -48,6 +50,21 @@ const MeetingCard = () => {
                     </div>
                 </>
             )}
+
+            {isUploading && (
+                <div className="">
+                    <CircularProgressbar value={progress} text={`${progress}%`} className="size-20" styles={
+                        buildStyles({
+                            pathColor: "#2563eb",
+                            textColor: "#2563eb"
+                        })
+                    } />
+                    <p className="text-sm text-gray-500 text-center">
+                        Uploading your meeting...
+                    </p>
+                </div>
+            )}
+
         </Card>
     )
 }

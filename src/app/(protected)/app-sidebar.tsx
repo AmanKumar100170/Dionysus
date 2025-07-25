@@ -42,7 +42,9 @@ export function AppSidebar() {
             <SidebarHeader>
                 <div className="flex items-center gap-2">
                     {/* <Image src='/logo.png' alt='logo' width={40} height={40} /> */}
-                    Logo
+                    <div className="flex items-center gap-2">
+                        <Image src='/mainlogo.png' alt='logo' width={40} height ={40} />
+                    </div>
                     {open && (
                         <h1 className="text-xl font-bold text-primary/80">
                             Dionysus
@@ -92,7 +94,7 @@ export function AppSidebar() {
                                 return (
                                     <SidebarMenuItem key={project.name}>
                                         <SidebarMenuButton asChild>
-                                            <div onClick={() => {
+                                            <div className='cursor-pointer' onClick={() => {
                                                 setProjectId(project.id)
                                             }}>
                                                 <div className={cn(

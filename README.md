@@ -20,7 +20,8 @@
 - Rich markdown formatting for commit messages.
 - Extracts and displays applied design patterns or refactor insights (e.g., SOLID principles).
 - Repository management with support for multiple projects.
-- ![Dionysus Dashboard](/public/D Dashboard.png)
+- ![Dionysus Dashboard](/public/Dashboard.png)
+- ![AI Summary](public/AISummary.png)
 
 ### 🤖 AI Q&A System (Codebase GPT)
 - Ask technical questions like:
@@ -31,6 +32,8 @@
   - **Explanation with reasoning**
   - **Syntax-highlighted code snippets**
 - Maintains a history of questions and answers per project.
+- ![Saved Questions](public/SavedQues.png)
+- ![Saved Question Answers](public/SavedQuesAns.png)
 
 ### 📚 Retrieval-Augmented Generation (RAG)
 - Implements **RAG architecture** to enhance answer quality by combining LLMs with context-aware document retrieval.
@@ -40,11 +43,13 @@
   - Fetch top-matching chunks based on semantic similarity.
 - 🧠 LLMs then generate responses grounded in the retrieved context, improving precision and traceability.
 - Ensures that answers are not hallucinated but based on actual codebase content.
+- ![Ask Question](public/QuesAns.png)
 
 ### 🔐 Authentication
 - Built-in authentication using **Clerk**.
 - Supports login via GitHub, Google, or email.
 - Protected routes for authenticated users.
+- ![Sign In Page](public/SignIn.png)
 
 ---
 

@@ -1,29 +1,88 @@
-# Create T3 App
+# 🎧 Dionysus – AI-Powered Codebase Navigator
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+> An intelligent developer assistant that helps you explore your codebase using Generative AI.
 
-## What's next? How do I make an app with this?
+---
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## 📌 Overview
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- 🧠 **Dionysus** is a full-stack AI-powered dashboard built for modern engineering teams.
+- 🔍 Ask natural-language questions about your GitHub codebase and get accurate, file-specific answers.
+- 📁 Auto-indexes repositories and commits with detailed insights.
+- 🧠 Powered by Large Language Models (LLMs), LangChain, and RAG-based retrieval for contextual responses.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+---
 
-## Learn More
+## 🚀 Features
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+### ✅ GitHub Dashboard
+- Displays your GitHub repository commits in real time.
+- Rich markdown formatting for commit messages.
+- Extracts and displays applied design patterns or refactor insights (e.g., SOLID principles).
+- Repository management with support for multiple projects.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### 🤖 AI Q&A System (Codebase GPT)
+- Ask technical questions like:
+  - _“Where is the main routing logic implemented?”_
+  - _“Explain the use of tRPC in this project.”_
+- Answers include:
+  - **Referenced file names**
+  - **Explanation with reasoning**
+  - **Syntax-highlighted code snippets**
+- Maintains a history of questions and answers per project.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+### 📚 Retrieval-Augmented Generation (RAG)
+- Implements **RAG architecture** to enhance answer quality by combining LLMs with context-aware document retrieval.
+- 🔎 **LangChain** is used to:
+  - Chunk and embed source code files.
+  - Store vectors in a retrievable format.
+  - Fetch top-matching chunks based on semantic similarity.
+- 🧠 LLMs then generate responses grounded in the retrieved context, improving precision and traceability.
+- Ensures that answers are not hallucinated but based on actual codebase content.
 
-## How do I deploy this?
+### 🔐 Authentication
+- Built-in authentication using **Clerk**.
+- Supports login via GitHub, Google, or email.
+- Protected routes for authenticated users.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+---
+
+## 🧱 Tech Stack
+
+### 📦 Frontend
+- **Framework**: Next.js 15 with App Router
+- **React**: React 18 + Server Components
+- **Styling**: Tailwind CSS + ShadCN + Radix UI
+- **Icons**: Lucide-react
+- **Forms**: React Hook Form, `usehooks-ts`
+- **Markdown Editor**: `@uiw/react-md-editor`
+
+### 🤖 AI Integration
+- **AI SDKs**: `@ai-sdk/google`, `@google/generative-ai`, `@langchain/*`
+- **LLM Usage**: RAG-based architecture for contextual answers
+- **Embedding & Chunking**: Efficient source file parsing for accurate context retrieval
+
+### 🧠 Backend
+- **API**: tRPC (type-safe API across frontend/backend)
+- **ORM**: Prisma with PostgreSQL
+- **Auth**: Clerk for user management
+- **Storage**: Firebase Storage (for future use)
+
+---
+
+## 🗃️ Project Structure Highlights
+
+<details>
+<summary>Directory Tree</summary>
+
+```bash
+/components
+  └── ui/                                  # Reusable UI components
+  └── dashboard/                           # Commit list and markdown viewer
+  └── qa/                                  # Q&A interface and result viewer
+
+/app
+  ├── dashboard/                           # GitHub commit dashboard
+  ├── qa/                                  # AI-powered Q&A system
+  ├── auth/                                # Clerk login/signup handling
+  ├── api/                                 # Backend endpoints and tRPC routers
